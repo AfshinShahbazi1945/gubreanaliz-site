@@ -1,0 +1,389 @@
+/* =========================================================
+   METALAB Split Landing Page
+   Dosya: css/metalab-landing.css
+   Kullanım: index.html içinde çağrılır.
+   ========================================================= */
+
+:root {
+  --green-dark: #185c25;
+  --green: #2f8a35;
+  --green-light: #77b84a;
+  --blue-dark: #073f63;
+  --blue: #0d6b99;
+  --orange: #f28b20;
+  --cream: #f8f5ec;
+  --white: #ffffff;
+  --ink: #0a1f2f;
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  color: var(--white);
+}
+
+body {
+  overflow-x: hidden;
+  background: #061521;
+}
+
+a {
+  text-decoration: none;
+}
+
+.metalab-landing {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Üst logo alanı */
+.brand-bar {
+  position: fixed;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: min(460px, 72vw);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.brand-logo {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  border-radius: 24px;
+  background: rgba(4, 18, 28, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
+}
+
+.brand-logo img {
+  width: min(340px, 56vw);
+  max-height: 82px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Paneller */
+.split-panel {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 150px 7vw 90px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  transition: transform 0.55s ease, filter 0.55s ease;
+}
+
+.split-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.05);
+  transition: transform 1.2s ease;
+}
+
+.split-panel:hover::before {
+  transform: scale(1.12);
+}
+
+.split-fertilizer::before {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(40, 85, 22, 0.26)),
+    url("../images/banner4.jpg"),
+    url("../images/banner.jpg");
+  background-position: center bottom;
+}
+
+.split-soil::before {
+  background-image:
+    linear-gradient(180deg, rgba(235, 249, 255, 0.18), rgba(2, 54, 84, 0.18)),
+    url("../images/banner2.jpg"),
+    url("../images/banner3.jpg");
+  background-position: center center;
+}
+
+.panel-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.split-fertilizer .panel-overlay {
+  background:
+    radial-gradient(circle at 20% 78%, rgba(91, 140, 32, 0.38), transparent 34%),
+    linear-gradient(90deg, rgba(13, 39, 15, 0.60), rgba(241, 237, 216, 0.26));
+}
+
+.split-soil .panel-overlay {
+  background:
+    radial-gradient(circle at 82% 16%, rgba(255, 255, 255, 0.34), transparent 30%),
+    linear-gradient(90deg, rgba(225, 246, 255, 0.32), rgba(4, 55, 86, 0.56));
+}
+
+/* Orta kart */
+.panel-content {
+  width: min(520px, 86%);
+  min-height: 460px;
+  padding: 54px 42px 46px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 34px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  transform: translateY(0);
+  animation: riseIn 0.9s ease both;
+}
+
+.split-soil .panel-content {
+  animation-delay: 0.12s;
+}
+
+.panel-icon {
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+.panel-icon svg {
+  width: 62px;
+  height: 62px;
+  fill: none;
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.split-fertilizer .panel-icon svg {
+  stroke: var(--green-dark);
+}
+
+.split-soil .panel-icon svg {
+  stroke: var(--blue-dark);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.split-fertilizer .eyebrow {
+  color: var(--green-dark);
+}
+
+.split-soil .eyebrow {
+  color: var(--blue-dark);
+}
+
+.panel-content h1,
+.panel-content h2 {
+  margin: 0;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.panel-content h1 {
+  font-size: clamp(42px, 5vw, 74px);
+  color: var(--green-dark);
+}
+
+.panel-content h2 {
+  font-size: clamp(34px, 4.2vw, 66px);
+  color: var(--blue-dark);
+}
+
+.panel-text {
+  max-width: 420px;
+  margin: 22px auto 28px;
+  color: rgba(10, 31, 47, 0.74);
+  font-size: 17px;
+  line-height: 1.72;
+  font-weight: 500;
+}
+
+.panel-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  justify-content: center;
+  min-width: 188px;
+  padding: 15px 28px;
+  border-radius: 14px;
+  color: var(--white);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.panel-button strong {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.78);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.fertilizer-button {
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+}
+
+.soil-button {
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+}
+
+.panel-button:hover,
+.panel-button:focus {
+  transform: translateY(-4px);
+  filter: saturate(1.05);
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.26);
+}
+
+/* Alt footer */
+.landing-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 18;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.76);
+  background: rgba(3, 19, 31, 0.92);
+  backdrop-filter: blur(10px);
+  font-size: 15px;
+}
+
+/* Animasyonlar */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mobil ve tablet */
+@media (max-width: 991px) {
+  .metalab-landing {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-bar {
+    top: 16px;
+    width: min(390px, 88vw);
+  }
+
+  .brand-logo {
+    padding: 10px 16px;
+    border-radius: 18px;
+  }
+
+  .brand-logo img {
+    width: min(270px, 70vw);
+    max-height: 64px;
+  }
+
+  .split-panel {
+    min-height: 50vh;
+    padding: 118px 22px 78px;
+  }
+
+  .panel-content {
+    width: min(560px, 100%);
+    min-height: auto;
+    padding: 34px 24px 30px;
+    border-radius: 26px;
+  }
+
+  .panel-icon {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 18px;
+  }
+
+  .panel-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .panel-text {
+    font-size: 15.5px;
+    margin: 16px auto 22px;
+  }
+
+  .landing-footer {
+    position: relative;
+  }
+}
+
+@media (max-width: 520px) {
+  .split-panel {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .panel-content h1 {
+    font-size: 38px;
+  }
+
+  .panel-content h2 {
+    font-size: 32px;
+  }
+
+  .panel-button {
+    min-width: 168px;
+    padding: 13px 22px;
+  }
+}
